@@ -44,7 +44,7 @@ listaSinopse = np.array(lista)
 print(listaTitulo.shape, listaSinopse.shape, len(listaTitulo))
 
 for i in range(1, 100):
-    r = req.get(' https://www.imdb.com/search/title/?genres=comedy&start='+str((i*50)+1)+'&explore=title_type,genres&ref_=adv_nxt')
+    r = req.get('https://www.imdb.com/search/title/?genres=comedy&start='+str((i*50)+1)+'&explore=title_type,genres&ref_=adv_nxt')
     pagina = r.text
 
     selector = Selector(text=pagina)
@@ -99,8 +99,9 @@ for i in range(int(len(listaTitulo)*porporcao_teste1), int(len(listaTitulo)*porp
     fp.write(listaTitulo[i]+','+'comedia'+','+listaSinopse[i] + '\n')
 fp.close()
 
-fp = open(os.getcwd()+'/database/validacao/comedia', 'w')
-for i in range(int(len(listaTitulo)*0.9), int(len(listaTitulo))):
-    #print(listaTitulo[i], ' -', listaSinopse[i], '\n')
-    fp.write(listaTitulo[i]+','+'comedia'+','+listaSinopse[i] + '\n')
-fp.close()
+
+#fp = open(os.getcwd()+'/database/validacao/comedia', 'w')
+#for i in range(int(len(listaTitulo)*0.9), int(len(listaTitulo))):
+#    #print(listaTitulo[i], ' -', listaSinopse[i], '\n')
+#    fp.write(listaTitulo[i]+','+'comedia'+','+listaSinopse[i] + '\n')
+#fp.close()

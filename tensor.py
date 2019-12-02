@@ -130,8 +130,12 @@ with graph.as_default():
 
     #x_vector = tf.compat.v1.reshape(mp1, [-1, drop1.shape[1]*drop1.shape[2]*drop1.shape[3]])
     fc1 = tf.layers.dense(x, 64, activation=tf.nn.relu, name="fc1")
-    fc2 = tf.layers.dense(fc1, 32, activation=tf.nn.relu, name="fc2")
+		
+    drop = tf.layers.dropout(fc1, 40)
+
+    fc2 = tf.layers.dense(drop, 32, activation=tf.nn.relu, name="fc2")
     fc3 = tf.layers.dense(fc2, 16, activation=tf.nn.relu, name="fc3")
+
     fc4 = tf.layers.dense(fc3, 4, name="fc4")
 
     x_norm = tf.layers.batch_normalization(x, training=is_train)
@@ -164,7 +168,7 @@ with tf.compat.v1.Session(graph = graph) as session:
 
     learning_rate = 0.0001
     batch_size = 32
-    for i in range(20000):
+    for i in range(5000):
         idx = np.random.permutation(len(X_train2))[:batch_size]
         x_batch = np.take(X_train2, idx, axis = 0)
         y_batch = np.take(y_train2, idx, axis = 0)       

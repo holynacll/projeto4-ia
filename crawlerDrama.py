@@ -44,7 +44,7 @@ for x in result:
 listaSinopse = np.array(lista)
 print(listaTitulo.shape, listaSinopse.shape, len(listaTitulo))
 
-for i in range(1, 500):
+for i in range(1, 100):
     r = req.get('https://www.imdb.com/search/title/?genres=drama&start='+str((i*50)+1)+'&explore=title_type,genres&ref_=adv_nxt')
     pagina = r.text
     #print(pagina)
